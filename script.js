@@ -18,6 +18,13 @@ const weatherIcon = document.getElementById('weatherIcon');
 const humidity = document.getElementById('humidity');
 const windSpeed = document.getElementById('windSpeed');
 const feelsLike = document.getElementById('feelsLike');
+const pressure = document.getElementById('pressure');
+const visibility = document.getElementById('visibility');
+const cloudiness = document.getElementById('cloudiness');
+const sunrise = document.getElementById('sunrise');
+const sunset = document.getElementById('sunset');
+const coordinates = document.getElementById('coordinates');
+const tempRange = document.getElementById('tempRange');
 
 // Event Listeners
 searchBtn.addEventListener('click', searchWeather);
@@ -119,6 +126,32 @@ function displayWeather(data) {
     // Update feels like temperature
     feelsLike.textContent = `${Math.round(data.main.feels_like)}°C`;
     
+    // Update pressure
+    pressure.textContent = `${data.main.pressure} hPa`;
+    
+    // Update visibility (convert from meters to km)
+    const visibilityKm = data.visibility ? (data.visibility / 1000).toFixed(1) : 'N/A';
+    visibility.textContent = `${visibilityKm} km`;
+    
+    // Update cloudiness
+    cloudiness.textContent = `${data.clouds.all}%`;
+    
+    // Update sunrise time
+    const sunriseTime = new Date(data.sys.sunrise * 1000);
+    sunrise.textContent = formatTime(sunriseTime);
+    
+    // Update sunset time
+    const sunsetTime = new Date(data.sys.sunset * 1000);
+    sunset.textContent = formatTime(sunsetTime);
+    
+    // Update coordinates
+    coordinates.textContent = `${data.coord.lat.toFixed(2)}, ${data.coord.lon.toFixed(2)}`;
+    
+    // Update temperature range
+    const minTemp = Math.round(data.main.temp_min);
+    const maxTemp = Math.round(data.main.temp_max);
+    tempRange.textContent = `${minTemp}°C / ${maxTemp}°C`;
+    
     // Hide loading and show weather display
     hideLoading();
     showWeatherDisplay();
@@ -191,6 +224,19 @@ function animateWeatherDisplay() {
     weatherDisplay.style.animation = 'none';
     weatherDisplay.offsetHeight; // Trigger reflow
     weatherDisplay.style.animation = 'fadeIn 0.5s ease-in';
+}
+
+/**
+ * Format time to HH:MM format
+ * @param {Date} date - Date object to format
+ * @returns {string} Formatted time string
+ */
+function formatTime(date) {
+    return date.toLocaleTimeString('en-US', {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false
+    });
 }
 
 /**

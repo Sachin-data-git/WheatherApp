@@ -166,42 +166,42 @@ body {
 /* Weather Details */
 .weather-details {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 15px;
     margin-top: 30px;
 }
 
 .detail-item {
     background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    padding: 20px;
-    border-radius: 15px;
+    padding: 15px;
+    border-radius: 12px;
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .detail-item:hover {
     transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
 .detail-item i {
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: #667eea;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     display: block;
 }
 
 .detail-label {
     display: block;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     color: #6c757d;
-    margin-bottom: 5px;
+    margin-bottom: 4px;
     font-weight: 500;
 }
 
 .detail-value {
     display: block;
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: #2c3e50;
     font-weight: 600;
 }
